@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill Assessment Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ✅ Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+  <img src="image/bics_logo.png" alt="BICS Global Logo" class="logo-img me-2" />
+</a>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ✅ Layout -->
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <button class="sidebar-btn" onclick="showDashboard()">Dashboard</button>
+      <button class="sidebar-btn" onclick="showAssessment()">Assessment</button>
+    </aside>
+
+    <!-- Content -->
+    <div class="content flex-grow-1 p-4">
+      <!-- Dashboard -->
+      <div id="dashboardSection">
+        <h3>Dashboard Overview</h3>
+        <p>Welcome! Use the sidebar to navigate to assessments.</p>
+      </div>
+
+      <!-- Assessment -->
+      <div id="assessmentSection" style="display:none;">
+        <div class="d-flex justify-content-between mb-3">
+          <h3>Assessment Records</h3>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#assessmentModal">➕ Add</button>
+        </div>
+
+        <table class="table table-bordered text-center">
+          <thead class="table-dark">
+            <tr>
+              <th>Intern Name</th>
+              <th>Domain</th>
+              <th>Mentor</th>
+              <th>Overall Score</th>
+              <th>Assessment</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="assessmentTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Modal Form -->
+  <div class="modal fade" id="assessmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content shadow-lg rounded-3">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title">Skill Assessment Form</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <form id="assessmentForm" class="p-3">
+          <div class="modal-body">
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label for="internName" class="form-label fw-bold">Intern Name</label>
+                <input type="text" id="internName" class="form-control" required />
+              </div>
+              <div class="col-md-6">
+                <label for="domain" class="form-label fw-bold">Domain</label>
+                <input type="text" id="domain" class="form-control" required />
+              </div>
+              <div class="col-md-6">
+                <label for="mentorName" class="form-label fw-bold">Mentor Name</label>
+                <input type="text" id="mentorName" class="form-control" required />
+              </div>
+              <div class="col-md-6">
+                <label for="assessmentNo" class="form-label fw-bold">Assessment</label>
+                <select id="assessmentNo" class="form-select" required>
+                  <option value="">Select Assessment</option>
+                  <option>Assessment 1</option>
+                  <option>Assessment 2</option>
+                  <option>Assessment 3</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="assessmentTopic" class="form-label fw-bold">Assessment Topic</label>
+                <input type="text" id="assessmentTopic" class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label for="assessmentDate" class="form-label fw-bold">Assessment Date</label>
+                <input type="date" id="assessmentDate" class="form-control" />
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="technical" class="form-label">Technical Skills</label>
+                <select id="technical" class="form-select"><option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              </div>
+              <div class="col-md-6">
+                <label for="analytical" class="form-label">Analytical Skills</label>
+                <select id="analytical" class="form-select"><option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              </div>
+              <div class="col-md-6">
+                <label for="troubleshooting" class="form-label">Troubleshooting</label>
+                <select id="troubleshooting" class="form-select"><option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              </div>
+              <div class="col-md-6">
+                <label for="verbal" class="form-label">Verbal Communication</label>
+                <select id="verbal" class="form-select"><option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              </div>
+              <div class="col-md-6">
+                <label for="written" class="form-label">Written Communication</label>
+                <select id="written" class="form-select"><option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              </div>
+              <div class="col-md-6">
+                <label for="collaboration" class="form-label">Collaboration</label>
+                <select id="collaboration" class="form-select"><option value="">Select</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ View Modal -->
+  <div class="modal fade" id="viewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content shadow-lg rounded-3">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Assessment Details</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tbody id="viewTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
